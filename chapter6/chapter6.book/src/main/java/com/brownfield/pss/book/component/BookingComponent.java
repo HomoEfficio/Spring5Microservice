@@ -91,8 +91,11 @@ public class BookingComponent {
 	
 	
 	public void updateStatus(String status, long bookingId) {
-		BookingRecord record = bookingRepository.findById(new Long(bookingId)).get();
-		record.setStatus(status);
+		//BookingRecord record = bookingRepository.findById(new Long(bookingId)).get();
+		//record.setStatus(status);
+
+		bookingRepository.findById(new Long(bookingId))
+			.ifPresent(r -> r.setStatus(status));
 	}
 	
 	public void validateFareReactively(BookingRecord record){
